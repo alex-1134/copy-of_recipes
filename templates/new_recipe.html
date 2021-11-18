@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %} 
+
+    <h3 class="light-blue-text text-darken-4 center-align">Add New Recipe</h3>
+
+    <!-- Dropdown menu with meal categories -->
+    <div class="row card-panel grey lighten-5">
+        <form class="col s12" method="POST" action="{{ url_for('new_recipe') }}">
+            <div class="input-field col s12">
+                    <select multiple id="category" name="category" class="validate" required>
+                        <option value="" disabled selected>Choose Categories</option>
+                        {% for category in categories %}
+                            <option value="{{ category.category }}">{{ category.category }}</option> <!-- REMOVE IF NOT USED -->
+                        {% endfor %}
+
+                        <!-- Multiple categories for meals to choose from-->
+                        <option value="1">Breakfast</option>
+                        <option value="2">Brunch</option>
+                        <option value="3">Lunch</option>
+                        <option value="4">Dinner</option>
+                        <option value="5">Supper</option>
+                        <option value="6">Savoury</option>
+                        <option value="7">Sweet</option>
+                    </select>
+                    <label>Recipe Categories</label>
+              </div>
+
+                <!-- recipe name -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-utensils prefix light-blue-text text-darken-4"></i>
+                        <input id="recipe_name" name="recipe_name" minlength="4" maxlength="55" 
+                            type="text" class="validate" required>
+                        <label for="icon_prefix">Recipe Name</label>
+                    </div>
+                
+                <!-- cooking time -->   
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-clock prefix light-blue-text text-darken-4"></i>
+                        <textarea id="cooking_time" name="cooking_time" minlength="1" maxlength="10"
+                            class="materialize-textarea validate" required></textarea>
+                        <label for="textarea1">Cooking Time</label>
+                    </div>
+                </div>
+                
+                <!-- meal ingredients -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-carrot prefix light-blue-text text-darken-4"></i>
+                        <textarea id="ingredients" name="ingredients" minlength="5 "
+                            class="materialize-textarea validate" required></textarea>
+                        <label for="textarea1">Ingredients</label>
+                    </div>
+                </div>
+                
+                <!-- meal prep steps-->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-utensil-spoon prefix light-blue-text text-darken-4"></i>
+                        <textarea id="prep" name="prep" minlength="50"
+                            class="materialize-textarea validate" required></textarea>
+                        <label for="textarea1">Preparation Steps</label>
+                    </div>
+                </div>
+
+                <!-- add submit button-->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-large light-pink darken-1 text-shadow">
+                            Add Recipe  <i class="fas fa-plus-square right"></i>
+                        </button>
+                    </div>
+                </div>
+        </form>
+    </div>
+    
+{% endblock %}
